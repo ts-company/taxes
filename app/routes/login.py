@@ -9,7 +9,7 @@ from app.database import get_db
 from app.schemas.users import UserLogin
 from app.config import BASE_DIR
 
-router = APIRouter(prefix="/")
+router = APIRouter()
 
 templates = Jinja2Templates(directory=BASE_DIR / "templates")
 
