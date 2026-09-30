@@ -45,7 +45,9 @@ async def home(request: Request, db: Session = Depends(get_db)):
             last_name="admin",
             username="admin",
             password=hash_password("123"),
-            role="admin"
+            role="admin",
+            is_active=True
         ))
+        db.commit()
 
     return templates.TemplateResponse("login.html", {"request": request})

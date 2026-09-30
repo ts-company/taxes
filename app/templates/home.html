@@ -1139,7 +1139,7 @@
                 homeView.innerHTML = '<p class="accounts-message">Loading accounts...</p>';
 
                 try {
-                    const response = await fetch('/users/', { credentials: 'same-origin' });
+                    const response = await fetch('/users/', { credentials: 'include' });
                     if (!response.ok) {
                         throw new Error(response.status === 403 ? 'You do not have permission to view accounts.' : 'Unable to load accounts. Please try again.');
                     }

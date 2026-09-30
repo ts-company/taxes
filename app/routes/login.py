@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, status, HTTPException, Request
+from fastapi import APIRouter, Depends, status, HTTPException
 from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
@@ -32,7 +32,7 @@ async def login(userlogin: UserLogin,
         key="access_token",
         value=token,
         httponly=True,
-        samesite="none",
+        samesite="lax",
         secure=False,
         path="/"
     )
@@ -40,7 +40,6 @@ async def login(userlogin: UserLogin,
     # samesite = "none",
     # secure = True,
     return response
-
 
 
 
