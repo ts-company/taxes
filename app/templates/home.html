@@ -356,6 +356,114 @@
             flex-direction: column;
         }
 
+        .home-view {
+            position: absolute;
+            z-index: 1;
+            inset: 72px 0 0 72px;
+            overflow: auto;
+            padding: 30px clamp(18px, 4vw, 56px);
+            color: white;
+        }
+
+        .home-placeholder {
+            max-width: 920px;
+            margin: 24px auto;
+        }
+
+        .home-placeholder h1 {
+            font-size: 30px;
+        }
+
+        .accounts-view {
+            max-width: 1100px;
+            margin: 8px auto;
+            color: #263143;
+        }
+
+        .accounts-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .accounts-heading h1 {
+            font-size: 28px;
+        }
+
+        .accounts-refresh {
+            min-height: 36px;
+            padding: 0 12px;
+            border: 1px solid rgba(255, 255, 255, .35);
+            border-radius: 8px;
+            color: white;
+            background: rgba(255, 255, 255, .14);
+        }
+
+        .accounts-table-wrap {
+            overflow: auto;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 10px 35px rgba(12, 14, 73, .13);
+        }
+
+        .accounts-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .accounts-table th,
+        .accounts-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #e8eaf0;
+        }
+
+        .accounts-table th {
+            color: #697386;
+            background: #f7f8fa;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .accounts-table td {
+            color: #30394a;
+            font-size: 14px;
+        }
+
+        .account-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: #23754d;
+            font-size: 13px;
+        }
+
+        .account-status::before {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #35a66d;
+            content: "";
+        }
+
+        .account-status.inactive {
+            color: #7a6470;
+        }
+
+        .account-status.inactive::before {
+            background: #a6a1aa;
+        }
+
+        .accounts-empty,
+        .accounts-message {
+            padding: 24px;
+            color: #697386;
+            text-align: center;
+        }
+
         .heading-row {
             display: flex;
             align-items: center;
@@ -832,6 +940,10 @@
                 display: none;
             }
 
+            .primary-nav #accountsNav {
+                display: inline-flex;
+            }
+
             .top-actions {
                 gap: 6px;
             }
@@ -860,6 +972,28 @@
                 min-height: 100vh;
                 margin-left: 56px;
                 padding: 20px 16px 12px;
+            }
+
+            .home-view {
+                position: relative;
+                min-height: calc(100vh - 60px);
+                inset: auto;
+                margin-left: 56px;
+                padding: 22px 16px;
+            }
+
+            .accounts-heading {
+                align-items: flex-start;
+            }
+
+            .accounts-heading h1 {
+                font-size: 24px;
+            }
+
+            .accounts-table th,
+            .accounts-table td {
+                padding: 12px;
+                white-space: nowrap;
             }
 
             .heading-row {
@@ -947,8 +1081,10 @@
             <button class="brand-menu" id="menuToggle" type="button" aria-label="Expand menu" aria-expanded="false" aria-controls="workspaceMenu"><span class="hamburger"></span></button>
             <a class="brand" href="#" aria-label="Bitrix24 home">taxes</a>
             <nav class="primary-nav" aria-label="Main navigation">
-                <button class="nav-link active" type="button">Tasks</button>
-                <button class="nav-link" type="button">accounts</button>
+                <button class="nav-link active" id="tasksNav" type="button" aria-controls="homeView" aria-pressed="true">Tasks</button>
+                {% if role == "admin" or "manage users" in permisisons %}
+                <button class="nav-link" id="accountsNav" type="button" aria-controls="homeView" aria-pressed="false">Users</button>
+                {% endif %}
             </nav>
             <div class="top-actions">
                 <button class="pill plan" type="button">Select a plan</button>
@@ -974,10 +1110,46 @@
             <button class="sidebar-link bottom" type="button"><span class="side-button" aria-hidden="true">⚙</span><span class="side-label">Settings</span></button>
         </aside>
 
+        <main class="home-view" id="homeView" aria-live="polite">
+            <section class="home-placeholder">
+                <h1>Tasks</h1>
+            </section>
+        </main>
+
         <script>
             const app = document.querySelector('.app');
             const menuToggle = document.querySelector('#menuToggle');
             const menuBackdrop = document.querySelector('#menuBackdrop');
+            const tasksNav = document.querySelector('#tasksNav');
+            const accountsNav = document.querySelector('#accountsNav');
+            const homeView = document.querySelector('#homeView');
+            const tasksMarkup = homeView.innerHTML;
+
+            function setActiveView(activeButton) {
+                [tasksNav, accountsNav].filter(Boolean).forEach((button) => {
+                    const isActive = button === activeButton;
+                    button.classList.toggle('active', isActive);
+                    button.setAttribute('aria-pressed', String(isActive));
+                });
+            }
+
+            async function showAccounts() {
+                setActiveView(accountsNav);
+                homeView.setAttribute('aria-busy', 'true');
+                homeView.innerHTML = '<p class="accounts-message">Loading accounts...</p>';
+
+                try {
+                    const response = await fetch('/users/', { credentials: 'same-origin' });
+                    if (!response.ok) {
+                        throw new Error(response.status === 403 ? 'You do not have permission to view accounts.' : 'Unable to load accounts. Please try again.');
+                    }
+                    homeView.innerHTML = await response.text();
+                } catch (error) {
+                    homeView.innerHTML = `<p class="accounts-message" role="alert">${error.message}</p>`;
+                } finally {
+                    homeView.setAttribute('aria-busy', 'false');
+                }
+            }
 
             function setMenuOpen(isOpen) {
                 app.classList.toggle('menu-open', isOpen);
@@ -992,6 +1164,14 @@
             menuToggle.addEventListener('pointerenter', () => setMenuOpen(true));
             menuBackdrop.addEventListener('pointerenter', () => setMenuOpen(false));
             menuBackdrop.addEventListener('click', () => setMenuOpen(false));
+            if (accountsNav) accountsNav.addEventListener('click', showAccounts);
+            homeView.addEventListener('click', (event) => {
+                if (event.target.closest('#accountsRefresh')) showAccounts();
+            });
+            tasksNav.addEventListener('click', () => {
+                setActiveView(tasksNav);
+                homeView.innerHTML = tasksMarkup;
+            });
             document.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape') setMenuOpen(false);
             });

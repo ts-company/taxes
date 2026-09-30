@@ -223,19 +223,20 @@
 
         <form id="loginForm">
           <div class="field">
-            <label for="email">username</label>
-            <input id="email" name="email" type="email" autocomplete="username">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" autocomplete="username" required>
           </div>
           <div class="field">
             <label for="password">Password</label>
             <div class="input-wrap">
-              <input class="password-input" id="password" name="password" type="password" autocomplete="current-password">
+              <input class="password-input" id="password" name="password" type="password" autocomplete="current-password" required>
               <button class="password-toggle" id="passwordToggle" type="button" aria-label="Show password" aria-pressed="false">◉</button>
             </div>
           </div>
-          <button class="submit-button" type="submit">log in <span aria-hidden="true"></span></button>
+            <button class="submit-button" id="loginButton" type="submit">log in <span aria-hidden="true"></span></button>
           <p class="notice" id="formNotice" role="status" aria-live="polite"></p>
         </form>
+          </div>
     </section>
   </main>
 
@@ -243,6 +244,7 @@
     const passwordInput = document.querySelector('#password');
     const passwordToggle = document.querySelector('#passwordToggle');
     const formNotice = document.querySelector('#formNotice');
+    const loginButton = document.querySelector('#loginButton');
 
     passwordToggle.addEventListener('click', () => {
       const showPassword = passwordInput.type === 'password';
@@ -251,26 +253,38 @@
       passwordToggle.setAttribute('aria-label', showPassword ? 'Hide password' : 'Show password');
     });
 
-    document.querySelector('#loginForm').addEventListener('submit', (event) => {
+    document.querySelector('#loginForm').addEventListener('submit', async (event) => {
       event.preventDefault();
-      formNotice.textContent = 'Sign-in is not connected yet. Connect an authentication service to enable account access.';
       formNotice.classList.add('visible');
-    });
+      formNotice.textContent = '';
+      loginButton.disabled = true;
 
-    document.querySelector('#forgotPassword').addEventListener('click', (event) => {
-      event.preventDefault();
-      const email = document.querySelector('#email');
-      formNotice.textContent = email.value
-        ? `Password reset is not connected yet. A reset link would be sent to ${email.value}.`
-        : 'Enter your email address first. Password reset is not connected yet.';
-      formNotice.classList.add('visible');
-      if (!email.value) email.focus();
-    });
+      try {
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({
+            username: document.querySelector('#username').value,
+            password: passwordInput.value
+          })
+        });
 
-    document.querySelector('#createAccount').addEventListener('click', (event) => {
-      event.preventDefault();
-      formNotice.textContent = 'Account creation is not connected yet.';
-      formNotice.classList.add('visible');
+        if (response.ok) {
+          window.location.assign('/home/');
+          return;
+        }
+
+        formNotice.textContent = response.status === 403
+          ? 'This account is inactive. Contact your administrator.'
+          : response.status === 404
+            ? 'The username or password is incorrect.'
+            : 'Unable to sign in. Please try again.';
+      } catch {
+        formNotice.textContent = 'Unable to connect. Check your connection and try again.';
+      } finally {
+        loginButton.disabled = false;
+      }
     });
   </script>
 </body>

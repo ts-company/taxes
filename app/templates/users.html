@@ -1,0 +1,34 @@
+<section class="accounts-view" aria-labelledby="accountsTitle">
+    <header class="accounts-heading">
+        <h1 id="accountsTitle">Accounts</h1>
+        <button class="accounts-refresh" id="accountsRefresh" type="button">Refresh</button>
+    </header>
+    <div class="accounts-table-wrap">
+        <table class="accounts-table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>
+                        <span class="account-status{% if not user.is_active %} inactive{% endif %}">
+                            {{ "Active" if user.is_active else "Inactive" }}
+                        </span>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td class="accounts-empty" colspan="3">No accounts to display.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
