@@ -181,6 +181,15 @@
             border-color: transparent;
         }
 
+        .pill.logout {
+            color: white;
+            text-decoration: none;
+        }
+
+        .pill.logout:hover {
+            background: rgba(255, 255, 255, .18);
+        }
+
         .clock {
             display: flex;
             align-items: center;
@@ -402,6 +411,123 @@
             background: rgba(255, 255, 255, .14);
         }
 
+        .accounts-subtitle {
+            margin: 5px 0 0;
+            color: rgba(255, 255, 255, .72);
+            font-size: 13px;
+        }
+
+        .accounts-toolbar,
+        .accounts-form-actions,
+        .accounts-row-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .accounts-button {
+            min-height: 36px;
+            padding: 0 12px;
+            border: 1px solid #d9dce5;
+            border-radius: 7px;
+            color: #3b4055;
+            background: white;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .accounts-button:hover {
+            background: #f1f2f7;
+        }
+
+        .accounts-button.primary {
+            border-color: #5148a8;
+            color: white;
+            background: #5148a8;
+        }
+
+        .accounts-button.primary:hover {
+            background: #40378f;
+        }
+
+        .accounts-button.danger {
+            border-color: #e7c9ce;
+            color: #a33343;
+        }
+
+        .accounts-panel {
+            margin: 0 0 18px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, .24);
+            border-radius: 10px;
+            color: white;
+            background: rgba(255, 255, 255, .12);
+        }
+
+        .accounts-panel h2,
+        .accounts-dialog h2 {
+            margin: 0 0 14px;
+            font-size: 18px;
+        }
+
+        .accounts-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+            gap: 14px;
+        }
+
+        .accounts-form label {
+            display: grid;
+            gap: 6px;
+            color: inherit;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .accounts-form input,
+        .accounts-form select {
+            width: 100%;
+            min-height: 40px;
+            padding: 8px 10px;
+            border: 1px solid #d9dce5;
+            border-radius: 7px;
+            color: #30394a;
+            background: white;
+        }
+
+        .accounts-form input:focus,
+        .accounts-form select:focus {
+            outline: 2px solid #928be0;
+            outline-offset: 1px;
+        }
+
+        .accounts-form-actions {
+            align-self: end;
+        }
+
+        .accounts-help {
+            margin: -6px 0 14px;
+            color: #747b8d;
+            font-size: 13px;
+        }
+
+        .accounts-feedback,
+        .accounts-form-message {
+            margin: 0 0 14px;
+            padding: 10px 12px;
+            border-radius: 7px;
+            color: #245d43;
+            background: #e7f6ed;
+            font-size: 13px;
+        }
+
+        .accounts-feedback.error,
+        .accounts-form-message.error {
+            color: #8a2636;
+            background: #fff0f1;
+        }
+
         .accounts-table-wrap {
             overflow: auto;
             border-radius: 8px;
@@ -433,6 +559,10 @@
             font-size: 14px;
         }
 
+        .accounts-row-actions {
+            min-width: 280px;
+        }
+
         .account-status {
             display: inline-flex;
             align-items: center;
@@ -462,6 +592,58 @@
             padding: 24px;
             color: #697386;
             text-align: center;
+        }
+
+        .accounts-dialog {
+            width: min(520px, calc(100vw - 32px));
+            max-height: min(80vh, 680px);
+            padding: 22px;
+            border: 0;
+            border-radius: 12px;
+            color: #30394a;
+            box-shadow: 0 18px 60px rgba(12, 14, 73, .28);
+        }
+
+        .accounts-dialog::backdrop {
+            background: rgba(16, 20, 55, .58);
+        }
+
+        .accounts-dialog-heading {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .permissions-list {
+            display: grid;
+            gap: 8px;
+            margin: 0 0 18px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .permissions-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 12px;
+            border: 1px solid #e8eaf0;
+            border-radius: 7px;
+            overflow-wrap: anywhere;
+        }
+
+        .permissions-empty {
+            color: #697386;
+            text-align: center;
+        }
+
+        .permission-form {
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            padding-top: 16px;
+            border-top: 1px solid #e8eaf0;
         }
 
         .heading-row {
@@ -1083,11 +1265,13 @@
             <nav class="primary-nav" aria-label="Main navigation">
                 <button class="nav-link active" id="tasksNav" type="button" aria-controls="homeView" aria-pressed="true">Tasks</button>
                 {% if role == "admin" or "manage users" in permisisons %}
-                <button class="nav-link" id="accountsNav" type="button" aria-controls="homeView" aria-pressed="false">Users</button>
+                <button class="nav-link" id="accountsNav" type="button" aria-controls="homeView" aria-pressed="false">Accounts</button>
                 {% endif %}
             </nav>
             <div class="top-actions">
+                <button class="pill profile" id="credentialsNav" type="button">My account</button>
                 <button class="pill plan" type="button">Select a plan</button>
+                <a class="pill logout" href="/logout">Log out</a>
             </div>
         </header>
 
@@ -1110,11 +1294,29 @@
             <button class="sidebar-link bottom" type="button"><span class="side-button" aria-hidden="true">⚙</span><span class="side-label">Settings</span></button>
         </aside>
 
-        <main class="home-view" id="homeView" aria-live="polite">
+        <main class="home-view" id="homeView" aria-live="polite" data-is-admin="{{ 'true' if role == 'admin' else 'false' }}">
             <section class="home-placeholder">
                 <h1>Tasks</h1>
             </section>
         </main>
+
+        <dialog class="accounts-dialog" id="credentialsDialog" aria-labelledby="credentialsTitle">
+            <div class="accounts-dialog-heading">
+                <div>
+                    <h2 id="credentialsTitle">Update my credentials</h2>
+                    <p class="accounts-help">Leave a field blank to keep its current value.</p>
+                </div>
+                <button class="accounts-button" id="closeCredentials" type="button">Close</button>
+            </div>
+            <form class="accounts-form" id="credentialsForm">
+                <label>New username<input name="username" autocomplete="username"></label>
+                <label>New password<input name="password" type="password" autocomplete="new-password"></label>
+                <div class="accounts-form-actions">
+                    <button class="accounts-button primary" type="submit">Save credentials</button>
+                </div>
+                <p class="accounts-form-message" role="status" aria-live="polite" hidden></p>
+            </form>
+        </dialog>
 
         <script>
             const app = document.querySelector('.app');
@@ -1123,6 +1325,7 @@
             const tasksNav = document.querySelector('#tasksNav');
             const accountsNav = document.querySelector('#accountsNav');
             const homeView = document.querySelector('#homeView');
+            const credentialsDialog = document.querySelector('#credentialsDialog');
             const tasksMarkup = homeView.innerHTML;
 
             function setActiveView(activeButton) {
@@ -1144,10 +1347,82 @@
                         throw new Error(response.status === 403 ? 'You do not have permission to view accounts.' : 'Unable to load accounts. Please try again.');
                     }
                     homeView.innerHTML = await response.text();
+                    homeView.querySelectorAll('.admin-only').forEach((element) => {
+                        element.hidden = homeView.dataset.isAdmin !== 'true';
+                    });
                 } catch (error) {
-                    homeView.innerHTML = `<p class="accounts-message" role="alert">${error.message}</p>`;
+                    const message = document.createElement('p');
+                    message.className = 'accounts-message';
+                    message.setAttribute('role', 'alert');
+                    message.textContent = error instanceof Error ? error.message : 'Unable to load accounts. Please try again.';
+                    homeView.replaceChildren(message);
                 } finally {
                     homeView.setAttribute('aria-busy', 'false');
+                }
+            }
+
+            async function requestApi(url, method = 'GET', payload) {
+                const options = { method, credentials: 'include' };
+                if (payload !== undefined) {
+                    options.headers = { 'Content-Type': 'application/json' };
+                    options.body = JSON.stringify(payload);
+                }
+
+                const response = await fetch(url, options);
+                const responseText = await response.text();
+                let result = null;
+                if (responseText) {
+                    try {
+                        result = JSON.parse(responseText);
+                    } catch {
+                        result = responseText;
+                    }
+                }
+
+                if (!response.ok) {
+                    const detail = result && typeof result === 'object' ? result.detail : null;
+                    throw new Error(typeof detail === 'string' ? detail : `Request failed (${response.status}). Please try again.`);
+                }
+                return result;
+            }
+
+            function setFormMessage(element, message, isError = false) {
+                element.textContent = message;
+                element.classList.toggle('error', isError);
+                element.hidden = !message;
+            }
+
+            async function loadPermissions(userId) {
+                const list = homeView.querySelector('#permissionsList');
+                const message = homeView.querySelector('#permissionsMessage');
+                list.replaceChildren();
+                setFormMessage(message, 'Loading permissions...');
+
+                try {
+                    const permissions = await requestApi(`/users/permissions/${encodeURIComponent(userId)}`);
+                    if (!permissions.length) {
+                        const empty = document.createElement('li');
+                        empty.className = 'permissions-empty';
+                        empty.textContent = 'No permissions assigned.';
+                        list.append(empty);
+                    } else {
+                        permissions.forEach((permission) => {
+                            const item = document.createElement('li');
+                            const name = document.createElement('span');
+                            name.textContent = permission.type;
+                            const remove = document.createElement('button');
+                            remove.className = 'accounts-button danger';
+                            remove.type = 'button';
+                            remove.dataset.action = 'delete-permission';
+                            remove.dataset.permissionId = permission.id;
+                            remove.textContent = 'Remove';
+                            item.append(name, remove);
+                            list.append(item);
+                        });
+                    }
+                    setFormMessage(message, '');
+                } catch (error) {
+                    setFormMessage(message, error instanceof Error ? error.message : 'Unable to load permissions.', true);
                 }
             }
 
@@ -1164,9 +1439,115 @@
             menuToggle.addEventListener('pointerenter', () => setMenuOpen(true));
             menuBackdrop.addEventListener('pointerenter', () => setMenuOpen(false));
             menuBackdrop.addEventListener('click', () => setMenuOpen(false));
+            document.querySelector('#credentialsNav').addEventListener('click', () => credentialsDialog.showModal());
+            document.querySelector('#closeCredentials').addEventListener('click', () => credentialsDialog.close());
             if (accountsNav) accountsNav.addEventListener('click', showAccounts);
             homeView.addEventListener('click', (event) => {
-                if (event.target.closest('#accountsRefresh')) showAccounts();
+                const button = event.target.closest('button');
+                if (!button) return;
+
+                if (button.id === 'accountsRefresh') {
+                    showAccounts();
+                    return;
+                }
+
+                const action = button.dataset.action;
+                if (action === 'toggle-add-user') {
+                    const panelId = 'addUserPanel';
+                    const panel = homeView.querySelector(`#${panelId}`);
+                    panel.hidden = !panel.hidden;
+                    homeView.querySelectorAll(`[aria-controls="${panelId}"]`).forEach((control) => {
+                        control.setAttribute('aria-expanded', String(!panel.hidden));
+                    });
+                    return;
+                }
+
+                if (action === 'close-permissions') {
+                    homeView.querySelector('#permissionsDialog').close();
+                    return;
+                }
+
+                if (action === 'permissions') {
+                    const userId = button.dataset.userId;
+                    const row = button.closest('tr');
+                    const dialog = homeView.querySelector('#permissionsDialog');
+                    homeView.querySelector('#addPermissionForm [name="user_id"]').value = userId;
+                    homeView.querySelector('#permissionsUserName').textContent = row.cells[0].textContent.trim();
+                    dialog.showModal();
+                    loadPermissions(userId);
+                    return;
+                }
+
+                if (action === 'delete-permission') {
+                    if (!window.confirm('Remove this permission?')) return;
+                    requestApi(`/users/del_permission/${encodeURIComponent(button.dataset.permissionId)}`, 'DELETE')
+                        .then(() => loadPermissions(homeView.querySelector('#addPermissionForm [name="user_id"]').value))
+                        .catch((error) => setFormMessage(homeView.querySelector('#permissionsMessage'), error.message, true));
+                    return;
+                }
+
+                if (action === 'activate' || action === 'deactivate') {
+                    const userId = button.dataset.userId;
+                    requestApi(`/users/${action}/${encodeURIComponent(userId)}`, 'PATCH')
+                        .then(showAccounts)
+                        .catch((error) => {
+                            const feedback = homeView.querySelector('#accountsFeedback');
+                            setFormMessage(feedback, error.message, true);
+                        });
+                    return;
+                }
+
+                if (action === 'delete') {
+                    const userId = button.dataset.userId;
+                    if (!window.confirm('Delete this account? This action cannot be undone.')) return;
+                    requestApi(`/users/delete/${encodeURIComponent(userId)}`, 'DELETE')
+                        .then(showAccounts)
+                        .catch((error) => {
+                            const feedback = homeView.querySelector('#accountsFeedback');
+                            setFormMessage(feedback, error.message, true);
+                        });
+                }
+            });
+            app.addEventListener('submit', (event) => {
+                const form = event.target;
+                if (!(form instanceof HTMLFormElement)) return;
+                event.preventDefault();
+
+                const values = Object.fromEntries(new FormData(form));
+                const message = form.querySelector('.accounts-form-message');
+                if (form.id === 'addUserForm') {
+                    const { role, ...user } = values;
+                    requestApi('/users/add', 'POST', { ...user, role })
+                        .then(() => showAccounts())
+                        .catch((error) => setFormMessage(message, error.message, true));
+                    return;
+                }
+
+                if (form.id === 'credentialsForm') {
+                    const payload = Object.fromEntries(Object.entries(values).filter(([, value]) => value));
+                    if (!Object.keys(payload).length) {
+                        setFormMessage(message, 'Enter a new username or password.', true);
+                        return;
+                    }
+                    requestApi('/users/edit_cred', 'PATCH', payload)
+                        .then(() => {
+                            form.reset();
+                            setFormMessage(message, 'Credentials updated.');
+                        })
+                        .catch((error) => setFormMessage(message, error.message, true));
+                    return;
+                }
+
+                if (form.id === 'addPermissionForm') {
+                    const userId = values.user_id;
+                    requestApi(`/users/add_permission/${encodeURIComponent(userId)}`, 'POST', { type: values.type })
+                        .then(() => {
+                            form.reset();
+                            form.querySelector('[name="user_id"]').value = userId;
+                            return loadPermissions(userId);
+                        })
+                        .catch((error) => setFormMessage(homeView.querySelector('#permissionsMessage'), error.message, true));
+                }
             });
             tasksNav.addEventListener('click', () => {
                 setActiveView(tasksNav);
