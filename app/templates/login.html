@@ -255,8 +255,6 @@
 
     document.querySelector('#loginForm').addEventListener('submit', async (event) => {
       event.preventDefault();
-      formNotice.classList.add('visible');
-      formNotice.textContent = '';
       loginButton.disabled = true;
 
       try {
@@ -274,9 +272,9 @@
           window.location.assign('/home/');
           return;
         }
-
+        formNotice.classList.add('visible');
         formNotice.textContent = response.status === 403
-          ? 'This account is inactive. Contact your administrator.'
+          ? 'This account is inactive.'
           : response.status === 404
             ? 'The username or password is incorrect.'
             : 'Unable to sign in. Please try again.';
