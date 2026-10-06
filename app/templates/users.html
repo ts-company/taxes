@@ -56,7 +56,7 @@
                         <button class="accounts-button" type="button" data-action="{{ 'deactivate' if user.is_active else 'activate' }}" data-user-id="{{ user.id }}">
                             {{ "Deactivate" if user.is_active else "Activate" }}
                         </button>
-                        <button class="accounts-button admin-only" type="button" data-action="permissions" data-user-id="{{ user.id }}">Permissions</button>
+                        <button class="accounts-button admin-only danger" type="button" data-action="permissions" data-user-id="{{ user.id }}">Permissions</button>
                         <button class="accounts-button danger" type="button" data-action="delete" data-user-id="{{ user.id }}">Delete</button>
                     </td>
                 </tr>
