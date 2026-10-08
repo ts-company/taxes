@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="99672955-29f6-43d3-af63-a83f2885dec2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/taxes.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.idea/receipt-erp-intergration.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/auth.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/security.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/database.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/permissions_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/users_model.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/backup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/home.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/login.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/users.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/permissions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/users.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/deployment note.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic-ExtraBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic-ExtraLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic-SemiBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic-Thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_Condensed-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_Condensed-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_Condensed-ExtraBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_Condensed-ExtraLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_Condensed-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_Condensed-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_Condensed-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_Condensed-SemiBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_Condensed-Thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_ExtraCondensed-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_ExtraCondensed-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_ExtraCondensed-ExtraBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_ExtraCondensed-ExtraLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_ExtraCondensed-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_ExtraCondensed-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_ExtraCondensed-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_ExtraCondensed-SemiBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_ExtraCondensed-Thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_SemiCondensed-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_SemiCondensed-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_SemiCondensed-ExtraBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_SemiCondensed-ExtraLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_SemiCondensed-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_SemiCondensed-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_SemiCondensed-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_SemiCondensed-SemiBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/fonts/NotoSansArabic_SemiCondensed-Thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/language-toggle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/users.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="3K0Rvd2KPWBnDySvmbzM6X7r6ej" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "S:/Projects/taxes"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-4f4e415b4190-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.26053.29" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="99672955-29f6-43d3-af63-a83f2885dec2" name="Changes" comment="" />
+      <created>1790692730448</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1790692730448</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="Dockerfile" />
+  </component>
+</project>

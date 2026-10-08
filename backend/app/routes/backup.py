@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
-from app.database import engine
-from app.models.users_model import User
-from app.core.auth import validate_user
-from app.database import get_db
+from backend.app.database import engine
+from backend.app.models.users_model import User
+from backend.app.core.auth import validate_user
+from backend.app.database import get_db
 import subprocess
 import tempfile
 import os

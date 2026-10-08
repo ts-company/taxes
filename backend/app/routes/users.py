@@ -1,19 +1,16 @@
 from fastapi import APIRouter, Depends, status, HTTPException, Request
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from sqlalchemy.orm import Session
-from app.core.security import hash_password
-from app.models.users_model import User
-from app.models.permissions_model import Permission
-from app.core.auth import validate_user
-from app.database import get_db
-from app.schemas.users import UserCreate, EditUser
-from app.schemas.permissions import AddPerm
-from app.config import BASE_DIR, preset_permissions
+from backend.app.core.security import hash_password
+from backend.app.models.users_model import User
+from backend.app.models.permissions_model import Permission
+from backend.app.core.auth import validate_user
+from backend.app.database import get_db
+from backend.app.schemas.users import UserCreate, EditUser
+from backend.app.schemas.permissions import AddPerm
+from backend.app.config import preset_permissions
 
 router = APIRouter(prefix="/users")
-
-templates = Jinja2Templates(directory=BASE_DIR / "templates")
 
 # this endpoint returns the users page with each user's data
 @router.get("/")
@@ -31,7 +28,7 @@ def get_page(request: Request, db: Session = Depends(get_db)):
 
     current_users = db.query(User).filter(User.id != user_id).all()
 
-    users = [
+    return [
         {
             "id": u.id,
             "name": f"{u.first_name} {u.last_name}",
@@ -40,7 +37,6 @@ def get_page(request: Request, db: Session = Depends(get_db)):
         }
         for u in current_users
     ]
-    return templates.TemplateResponse("users.html", {"request": request, "users": users})
 
 #this endpoint receives the add user data and creates a user
 @router.post("/add")
@@ -172,17 +168,17 @@ def perms(request: Request, id: int, db: Session = Depends(get_db)):
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    if user.role != "admin":
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
-
     permissions = db.query(Permission).filter(Permission.user_id == id).all()
-    return [
-        {
-            "id": p.id,
-            "type": p.type,
-        }
-        for p in permissions
-    ]
+    return {
+        "role": user.role,
+        "permissions": [
+            {
+                "id": p.id,
+                "type": p.type,
+            }
+            for p in permissions
+        ]
+    }
 
 # this endpoint receives the id of the user in the url and the permission type to be added to that user
 @router.post("/add_permission/{id}")

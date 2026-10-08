@@ -17,7 +17,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import KeepTogether
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from io import BytesIO
-from app.config import BASE_DIR
+from backend.app.config import BASE_DIR
 from zoneinfo import ZoneInfo
 
 pdfmetrics.registerFont(TTFont("Arabic", f"{BASE_DIR}/static/fonts/NotoSansArabic-Regular.ttf"))

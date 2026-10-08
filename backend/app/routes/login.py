@@ -1,17 +1,13 @@
 from fastapi import APIRouter, Depends, status, HTTPException
-from fastapi.responses import JSONResponse, RedirectResponse
-from fastapi.templating import Jinja2Templates
+from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
-from app.models.users_model import User
-from app.core.security import verify_password
-from app.core.auth import create_access_token
-from app.database import get_db
-from app.schemas.users import UserLogin
-from app.config import BASE_DIR
+from backend.app.models.users_model import User
+from backend.app.core.security import verify_password
+from backend.app.core.auth import create_access_token
+from backend.app.database import get_db
+from backend.app.schemas.users import UserLogin
 
 router = APIRouter()
-
-templates = Jinja2Templates(directory=BASE_DIR / "templates")
 
 @router.post("/login")
 async def login(userlogin: UserLogin,
@@ -45,7 +41,7 @@ async def login(userlogin: UserLogin,
 
 @router.get("/logout")
 def logout():
-    response = RedirectResponse(url="/")
+    response = JSONResponse({"success": True})
     response.delete_cookie(
         key="access_token",
         path="/",

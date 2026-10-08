@@ -2,18 +2,15 @@ from fastapi import FastAPI, Request, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from dotenv import load_dotenv
-from app.core.security import hash_password
-from app.database import engine, Base, get_db
-from app.models.users_model import User
-from app.config import BASE_DIR
-from app.routes import login, home, users, backup
+from backend.app.core.security import hash_password
+from backend.app.database import engine, Base, get_db
+from backend.app.models.users_model import User
+from backend.app.config import BASE_DIR
+from backend.app.routes import login, users, backup
 
 load_dotenv()
-
-templates = Jinja2Templates(directory=BASE_DIR / "templates")
 
 app = FastAPI()
 
@@ -32,7 +29,6 @@ app.add_middleware(
 )
 
 app.include_router(login.router)
-app.include_router(home.router)
 app.include_router(users.router)
 app.include_router(backup.router)
 
@@ -50,4 +46,4 @@ async def home(request: Request, db: Session = Depends(get_db)):
         ))
         db.commit()
 
-    return templates.TemplateResponse("login.html", {"request": request})
+    return {"success": True}
